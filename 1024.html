@@ -40,6 +40,22 @@
     #animation {
       font-size: 40px;
       position: relative;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-image: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ff00ff, #ffff00, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: colorAnimation 5s infinite;
+    }
+
+    @keyframes colorAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
     }
 
     #monster {
@@ -64,91 +80,9 @@
   <div id="logo">10.24</div>
 
   <div id="animation-container">
-    <div id="animation"></div>
+    <div id="animation">Happy Programmer's Day!</div>
     <pre id="monster"></pre>
   </div>
-
-  <script>
-
-    var animationElement = document.getElementById('animation');
-    var animationWords = ['Happy', 'Programmer\'s', 'Day!', '想要男朋友', '拒绝加班', '咖啡不加糖', 'im护发高手', 'game god'];
-    var animationSpeed = 100; 
-    var animationIndex = 0;
-    var colors = ['#ff0000', '#00ff00', '#0000ff', '#ff00ff', '#ffff00', '#00ffff'];
-
-    function getRandomColor() {
-      return colors[Math.floor(Math.random() * colors.length)];
-    }
-
-    function getRandomPosition() {
-      var animationWidth = animationElement.offsetWidth; 
-      var animationHeight = animationElement.offsetHeight;
-      
-      var x = Math.random() * (animationWidth - 100); 
-      var y = Math.random() * (animationHeight - 40);
-      
-      return {x: x, y: y};
-    }
-
-    function checkOverlap(element, position) {
-      var existingWords = animationElement.querySelectorAll('span');
-      var overlap = false;
-
-      for (var i = 0; i < existingWords.length; i++) {
-        var wordRect = existingWords[i].getBoundingClientRect();
-        var elementRect = element.getBoundingClientRect();
-
-        if (
-          position.x >= wordRect.left && 
-          position.x <= wordRect.right &&
-          position.y >= wordRect.top &&
-          position.y <= wordRect.bottom
-        ) {
-          overlap = true;
-          break;
-        }
-      }
-
-      if (overlap) {
-        position = getRandomPosition();
-        return checkOverlap(element, position);
-      }
-
-      return position;
-    }
-
-    function animateWords() {
-      var existingWords = animationElement.querySelectorAll('span');
-      for (var i = 0; i < existingWords.length; i++) {
-        existingWords[i].style.position = 'absolute';
-        existingWords[i].style.left = 0;
-        existingWords[i].style.top = 0;
-      }
-
-      if (animationIndex < animationWords.length) {
-        var word = document.createElement('span');
-        word.innerHTML = animationWords[animationIndex];
-        word.style.color = getRandomColor();
-        word.style.position = 'absolute';
-        var position = getRandomPosition();
-        position = checkOverlap(word, position);
-        word.style.left = position.x + 'px';
-        word.style.top = position.y + 'px';
-        animationElement.appendChild(word);
-
-        animationIndex++;
-        setTimeout(animateWords, animationSpeed);
-      }
-
-      if (animationIndex === animationWords.length) {
-        var monster = document.getElementById('monster');
-        monster.style.top = 'calc(50% + 70px)';
-      }
-    }
-
-    animateWords();
-
-  </script>
 
 </body>
 </html>
