@@ -68,6 +68,26 @@
       white-space: pre;
       line-height: 1.2; 
       margin-top: 70px;
+      color: red;
+      animation: moveAnimation 10s infinite;
+    }
+
+    @keyframes moveAnimation {
+      0% {
+        transform: translate(-50%, -50%);
+      }
+      25% {
+        transform: translate(-55%, -55%);
+      }
+      50% {
+        transform: translate(-50%, -50%);
+      }
+      75% {
+        transform: translate(-45%, -45%);
+      }
+      100% {
+        transform: translate(-50%, -50%);
+      }
     }
 
     #smiley {
@@ -76,8 +96,9 @@
       top: 50%;
       transform: translate(0, -50%);
       font-size: 40px;
-      color: #ffffff;
+      color: red;
       line-height: 1.2;
+      animation: moveAnimation 10s infinite;
     }
   </style>
 
