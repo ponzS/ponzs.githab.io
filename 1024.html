@@ -32,17 +32,15 @@
     }
 
     #animation-container {
-      position: relative;
-      margin-top: 30px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       color: #ffffff;
     }
 
     #animation {
       font-size: 40px;
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translate(0, -50%);
       background-image: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ff00ff, #ffff00, #00ffff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -59,10 +57,6 @@
     }
 
     #monster {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
       content: "########\n#      #\n# O  O #\n#   ~  #\n########";
       font-family: monospace;
       white-space: pre;
@@ -104,7 +98,7 @@
 <body>
 
   <h1>Happy 1024 Programmer's Day!</h1>
-
+<h2>请你看个电影<h2>
   <div id="logo">10.24</div>
 
   <div id="animation-container">
