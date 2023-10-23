@@ -39,10 +39,10 @@
 
     #animation {
       font-size: 40px;
-      position: relative;
-      left: 50%;
+      position: absolute;
+      left: 0;
       top: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(0, -50%);
       background-image: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ff00ff, #ffff00, #00ffff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -69,6 +69,16 @@
       line-height: 1.2; 
       margin-top: 70px;
     }
+
+    #smiley {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translate(0, -50%);
+      font-size: 40px;
+      color: #ffffff;
+      line-height: 1.2;
+    }
   </style>
 
 </head>
@@ -82,6 +92,11 @@
   <div id="animation-container">
     <div id="animation">Happy Programmer's Day!</div>
     <pre id="monster"></pre>
+    <div id="smiley">
+      M&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;M<br>
+      M&nbsp;M&nbsp;M<br>
+      M&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;M<br>
+    </div>
   </div>
 
 </body>
