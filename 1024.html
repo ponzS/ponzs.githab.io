@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy 1024 Programmer's Day!</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #000000;  
+    }
+
+    h1 {
+      padding: 20px;
+      animation: titleAnimation 1s infinite alternate;
+    }
+
+    @keyframes titleAnimation {
+      0% {
+        color: #ff0000;
+        transform: translateX(-10px);
+      }
+      100% {
+        color: #00ff00;
+        transform: translateX(10px);  
+      }
+    }
+
+    #logo {
+      font-size: 100px;
+      margin-top: 50px;
+    }
+
+    #animation-container {
+      position: relative;
+      margin-top: 30px;
+      color: #ffffff;
+    }
+
+    #animation {
+      font-size: 40px;
+    }
+
+    #monster {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      content: "########\n#      #\n# O  O #\n#   ~  #\n########";
+      font-family: monospace;
+      white-space: pre;
+      line-height: 1.2; 
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <h1>Happy 1024 Programmer's Day!</h1>
+
+  <div id="logo">10.24</div>
+
+  <div id="animation-container">
+    <div id="animation"></div>
+    <pre id="monster"></pre>
+  </div>
+
+  <script>
+
+    var animationElement = document.getElementById('animation');
+    var animationWords = ['Happy', 'Programmer\'s', 'Day!', '想要男朋友', '拒绝加班', '咖啡不加糖','im护发高手','game god'];
+    var animationSpeed = 100; 
+    var animationIndex = 0;
+    var colors = ['#ff0000', '#00ff00', '#0000ff', '#ff00ff', '#ffff00', '#00ffff'];
+
+    function getRandomColor() {
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    function getRandomPosition() {
+      var animationWidth = animationElement.offsetWidth; 
+      var animationHeight = animationElement.offsetHeight;
+      
+      var x = Math.random() * animationWidth; 
+      var y = Math.random() * animationHeight;
+      
+      return {x: x, y: y};
+    }
+
+    function animateWords() {
+      var existingWords = animationElement.querySelectorAll('span');
+      for (var i = 0; i < existingWords.length; i++) {
+        existingWords[i].style.position = 'absolute';
+        existingWords[i].style.left = 0;
+        existingWords[i].style.top = 0;
+      }
+
+      if (animationIndex < animationWords.length) {
+        var word = document.createElement('span');
+        word.innerHTML = animationWords[animationIndex];
+        word.style.color = getRandomColor();
+        word.style.position = 'absolute';
+        var position = getRandomPosition();
+        word.style.left = position.x + 'px';
+        word.style.top = position.y + 'px';
+        animationElement.appendChild(word);
+
+        animationIndex++;
+        setTimeout(animateWords, animationSpeed);
+      }
+
+      if (animationIndex === animationWords.length) {
+        var monster = document.getElementById('monster');
+        monster.style.top = '50%';
+      }
+    }
+
+    animateWords();
+
+  </script>
+
+</body>
+</html>
