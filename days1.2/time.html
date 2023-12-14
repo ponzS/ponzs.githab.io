@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hoshino.zemi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #000; /* 设置背景颜色为黑色 */
+            color: #fff; /* 设置文本颜色为白色 */
+        }
+
+        #current-time {
+            font-size: 2em;
+        }
+
+        #countdown {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>星野は宇宙人と戦っています.</h1> 
+    <h2>すぐに地球に帰りますから,ポートフォリオを準備をしてください!</h2>
+
+    <div id="current-time"></div>
+    <div id="countdown"></div>
+
+    <script>
+        function updateClock() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+
+            
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            seconds = (seconds < 10 ? "0" : "") + seconds;
+
+            var formattedTime = hours + ":" + minutes + ":" + seconds;
+            document.getElementById('current-time').innerHTML = " " + formattedTime;//
+
+            
+            var today = currentTime.getDay(); 
+            var daysUntilSaturday = (6 + 7 - today) % 7; 
+            var nextSaturday = new Date();
+            nextSaturday.setDate(currentTime.getDate() + daysUntilSaturday);
+            nextSaturday.setHours(12, 0, 0); 
+
+            var timeDiff = nextSaturday - currentTime;
+            var days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+            var formattedCountdown = days + "days " + hours + "hours " + minutes + "minutes " + seconds + "s";
+            document.getElementById('countdown').innerHTML = "ゼ彡が始まるまであと: " + formattedCountdown;
+
+           
+            if (timeDiff <= 0) {
+                window.location.href = "time1.html";//这里是要跳转的链接
+            }
+        }
+
+        
+        setInterval(updateClock, 1000);
+
+        
+        updateClock();
+    </script>
+</body>
+</html>
+
