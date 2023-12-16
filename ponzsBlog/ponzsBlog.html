@@ -190,10 +190,18 @@
             content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
         }
 
+//主题 解决了第一次使用功能得点两次
+var clickCount = 0;
 
+        // 在页面加载完成后执行一次功能
+        window.onload = function () {
+            toggleTheme();
+        };
 
-        // 切换主题
         function toggleTheme() {
+            clickCount++;
+
+            // 你的切换主题功能代码
             var body = document.body;
             var currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
 
@@ -205,6 +213,19 @@
                 body.style.color = 'black';
             }
         }
+        // // 切换主题
+        // function toggleTheme() {
+        //     var body = document.body;
+        //     var currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
+
+        //     if (currentBackgroundColor === 'rgb(255, 255, 255)') {
+        //         body.style.backgroundColor = 'black';
+        //         body.style.color = 'white';
+        //     } else {
+        //         body.style.backgroundColor = 'white';
+        //         body.style.color = 'black';
+        //     }
+        // }
 
 
        // 切换全局翻译
