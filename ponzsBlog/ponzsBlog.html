@@ -51,7 +51,7 @@
             text-decoration: underline;
         }
 
-        #toggleButton {
+        /* #toggleButton {
             position: fixed;
             top: 10px;
             left: 10px;
@@ -61,11 +61,11 @@
             color: white;
             border: none;
             outline: none;
-        }
+        } */
 
         #translateToggleButton {
             position: fixed;
-            top: 43px;
+            top: 10px;
             left: 10px;
             cursor: pointer;
             padding: 5px;
@@ -82,10 +82,33 @@
             font-size: 0.9em;
             color: #777;
         }
+
+        #bottom-bar {
+    background-color: #1bd0dd;
+    height: 10vh;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bottom-button {
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px; /* 调整字体大小 */
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
     </style>
 </head>
 <body>
-    <button id="toggleButton" onclick="toggleTheme()">Soul Button</button>
+    <!-- <button id="toggleButton" onclick="toggleTheme()">Soul Button</button> -->
     <button id="translateToggleButton" onclick="toggleTranslation()">En or Cn</button>
 
     <div id="contactInfo">Contact: zhangguoai888@gmail.com</div>
@@ -228,5 +251,15 @@
             }
         }
     </script>
+
+
+
+
+<!-- 底部任务栏 -->
+<div id="bottom-bar">
+    <!-- 在这里添加底部任务栏内容 -->
+    <!-- <a href="#" id="bottom-button">手电筒 ></a> -->
+    <a href="#" id="bottom-button" onclick="toggleTheme()">点击解锁</a>
+</div>
 </body>
 </html>
