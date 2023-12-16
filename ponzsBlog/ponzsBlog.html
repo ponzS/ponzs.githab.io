@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+       
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script>
+            var translationEnabled = false;
+        </script>
+    
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ponzS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        article {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #333;
+            cursor: pointer; /* 添加光标样式，表示可点击 */
+        }
+
+        .date {
+            color: #777;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            display: none; /* 初始状态下隐藏内容 */
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        #toggleButton {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            padding: 5px;
+            background-color: #c71090;
+            color: white;
+            border: none;
+            outline: none;
+        }
+
+        #translateToggleButton {
+            position: fixed;
+            top: 43px;
+            left: 10px;
+            cursor: pointer;
+            padding: 5px;
+            background-color: #c71090;
+            color: white;
+            border: none;
+            outline: none;
+        }
+
+        #contactInfo {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <button id="toggleButton" onclick="toggleTheme()">Soul Button</button>
+    <button id="translateToggleButton" onclick="toggleTranslation()">En or Cn</button>
+
+    <div id="contactInfo">Contact: zhangguoai888@gmail.com</div>
+    <header>
+        <h1>ponzS Blog</h1>
+        <h2></h2>
+        <h3></h3>
+        <h4></h4>
+        <h5></h5>
+        <h6></h6>
+    </header>
+
+
+
+    <!-- 文章 -->
+    <article>
+        <h2 onclick="toggleContent(this)">About Me</h2>
+        <div class="content">
+            <p>本博客所有的文本内容初始都会以中文呈现，
+                因为我是一个中国人，目前的我来说，
+                使用中文可以进行更精细精确的表达，
+                如果对你来说阅读中文可能会有理解上的问题，
+                建议使用浏览器的翻译插件或者本博客自带的翻译功能，
+                目前翻译功能仅支持英文与中文的切换，其他的语言当然也可以实现，等有时间再做吧。
+                
+                这两天比较忙，有时间的时候再更新
+                
+            </p>
+
+
+
+        </div>
+        <p class="date">Last update time of the module: 2023.12.17</p>
+    </article>
+
+    <!-- 文章 -->
+    <article>
+        <h2 onclick="toggleContent(this)">About C#</h2>     
+        <div class="content">
+            <p>Full content of Article 2...</p>
+            
+
+
+        </div>
+        <p class="date">Last update time of the module: 2023.12.17</p>
+    </article>
+
+<!-- 文章 -->
+    <article>
+        <h2 onclick="toggleContent(this)">About unity</h2>     
+        <div class="content">
+            <p>Full content of Article 2...</p>
+            
+
+
+        </div>
+        <p class="date">Last update time of the module: 2023.12.17</p>
+    </article>
+<!-- 文章 -->
+    <article>
+        <h2 onclick="toggleContent(this)">About Java</h2>     
+        <div class="content">
+            <p>Full content of Article 2...</p>
+            
+
+
+        </div>
+        <p class="date">Last update time of the module: 2023.12.17</p>
+    </article>
+<!-- 文章 -->
+
+    <!-- 可根据需要添加更多文章 -->
+
+    <script>
+       
+      // 切换文章内容的显示或隐藏
+      function toggleContent(element) {
+            var content = element.nextElementSibling;
+            content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
+        }
+
+
+
+        // 切换主题
+        function toggleTheme() {
+            var body = document.body;
+            var currentBackgroundColor = window.getComputedStyle(body).backgroundColor;
+
+            if (currentBackgroundColor === 'rgb(255, 255, 255)') {
+                body.style.backgroundColor = 'black';
+                body.style.color = 'white';
+            } else {
+                body.style.backgroundColor = 'white';
+                body.style.color = 'black';
+            }
+        }
+
+
+       // 切换全局翻译
+       function toggleTranslation() {
+            translationEnabled = !translationEnabled;
+            translatePage();
+        }
+
+        // 翻译页面内容
+        function translatePage() {
+            if (translationEnabled) {
+                // 使用百度翻译 API 进行翻译
+                // 建议你自己去申请 是免费的 如果用我的 说不定那天我就换API了 会影响你项目的服务
+                var appId = '20210323000739360';
+                var appKey = '82GT5f3GpFEjNsNBPF1c';
+
+                // 获取当前页面的文本内容
+                var pageContent = $('body').text();
+
+                // 发送翻译请求
+                $.ajax({
+                    url: 'https://fanyi-api.baidu.com/api/trans/vip/translate',
+                    type: 'get',
+                    dataType: 'jsonp',
+                    data: {
+                        q: pageContent,
+                        from: 'auto',
+                        to: 'en',
+                        appid: appId,
+                        salt: new Date().getTime(),
+                        sign: md5(appId + pageContent + salt + appKey)
+                    },
+                    success: function (result) {
+                        // 翻译成功后，将翻译后的文本更新到页面
+                        $('body').text(result.trans_result[0].dst);
+                    },
+                    error: function () {
+                        alert('Translation error');
+                    }
+                });
+            } else {
+                // 关闭翻译时，恢复原始页面文本
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
